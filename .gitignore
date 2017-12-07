@@ -1,0 +1,17 @@
+build
+package-lock.json
+node_modules
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+logs
+*.log
+npm-debug.log*
+dist
+.npm
+.eslintcache
+.node_repl_history
+keys.js
+config
+*.bak
