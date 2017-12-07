@@ -1,0 +1,193 @@
+// Font Family
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
+
+@source-sans-pro: 'Source Sans Pro', sans-serif;
+@lato: 'Lato', sans-serif;
+
+.lato {
+	font-family: @lato;
+	letter-spacing: .9px;
+}
+
+.source-sans-pro {
+	font-family: @source-sans-pro;
+	// letter-spacing: 1.85px;
+}
+
+
+.icon {
+	letter-spacing: 0;
+}
+
+
+// Font Sizes (target / base)
+@basefontsize: 16px;
+@basefontweight: @fw400;
+@headerfontweight: @fw300;
+
+@h1: 48 / @basefontsize * 1em;
+@h2: 36 / @basefontsize * 1em;
+@h3: 28 / @basefontsize * 1em;
+@h4: 21 / @basefontsize * 1em;
+@h5: 18 / @basefontsize * 1em;
+@h6: 1em;
+@small: .85em;
+@xsmall: .75em;
+
+h1, .h1 {
+	font-size: @h1;
+	font-weight: @headerfontweight;
+}
+
+h2, .h2 {
+	font-size: @h2;
+	font-weight: @headerfontweight;
+}
+
+h3, .h3 {
+	font-size: @h3;
+	font-weight: @headerfontweight;
+}
+
+h4, .h4 {
+	font-size: @h4;
+	font-weight: @headerfontweight;
+}
+
+h5, .h5 {
+	font-size: @h5;
+	font-weight: @headerfontweight;
+}
+
+h6, .h6 {
+	font-size: @h6;
+	font-weight: @headerfontweight;
+}
+
+h1 {
+	margin-bottom: .5em; // 24/48
+	line-height: 1em;
+}
+
+h2 {
+	margin-bottom: 0.6666666667em; // 24/36
+	line-height: 48 / 36 * 1em;
+}
+
+h3 {
+	margin-bottom: 1em; // 24/24
+	line-height: 1em;
+}
+
+h4 {
+	margin-bottom: 1.1428571429em; // 24/21
+	line-height: 24 / 21 * 1em;
+}
+
+h5 {
+	margin-bottom: 1.3333333333em; // 24/18
+	line-height: 48 / 18 * 1em;
+}
+
+h6 {
+	margin-bottom: 1.7142857143em; // 24/14
+	line-height: 24 / @basefontsize * 1em;
+}
+
+small, .small {
+	font-size: @small;
+}
+
+.xsmall {
+	font-size: @xsmall;
+}
+
+p {
+	font-size: 1em;
+	// line-height: 24 / @basefontsize * 1em to line-height: 22 / @basefontsize * 1em;
+	line-height: 1.5em;
+	margin-bottom: 24 / @basefontsize * 1em;
+	font-weight: @basefontweight;
+	&:last-child {
+		margin: 0;
+	}
+}
+
+
+// Font styles
+.italic {
+	font-style: italic;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.text-center {
+	text-align: center;
+}
+
+
+// Font Weights
+@fw100: 100;
+@fw300: 300;
+@fw400: 400;
+@fw600: 600;
+@fw700: 700;
+@fw900: 900;
+
+strong, .strong {
+	font-weight: @fw900;
+}
+
+.fw-100 { font-weight: @fw100 !important; }
+.fw-300 { font-weight: @fw300 !important; }
+.fw-400 { font-weight: @fw400 !important; }
+.fw-600 { font-weight: @fw600 !important; }
+.fw-700 { font-weight: @fw700 !important; }
+.fw-900 { font-weight: @fw900 !important; }
+
+
+// Underlines
+.underline {
+	height: 2px;
+	background: @br1;
+	margin: 0 auto;
+}
+
+.underline-s {
+	&:extend(.underline);
+	width: 60px;
+}
+
+.underline-m {
+	&:extend(.underline);
+	width: 90px;
+}
+
+.underline-lg {
+	&:extend(.underline);
+	width: 120px;
+}
+
+
+// Links
+a,
+.link {
+	color: @gr1;
+	font-weight: @fw600;
+	text-decoration: none;
+
+	-webkit-transition: color 0.3s;
+	-moz-transition: color 0.3s;
+	transition: color 0.3s;
+
+	&:hover {
+		color: @gr2;
+		text-decoration: none;
+	}
+	&:hover, &:active, &:focus {
+		text-decoration: none;
+	}
+}

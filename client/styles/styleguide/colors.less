@@ -1,0 +1,61 @@
+/*
+ * .generate-color-schema(@colorName, @colorValue)
+ *
+ *   Generates a set of classes for a given color variable.
+ *
+ *   Usage:
+ *
+ *     @b0: #070A0D;
+ *     .generate-color-schema(b0, @b0);
+ *
+ *   Results in the following classes:
+ *
+ *     .text-b0 { color: #070A0D; }
+ *     .bg-b0 { background-color: #070A0D; }
+ */
+.generate-color-schema(@colorName, @colorValue) {
+	.text-@{colorName} {
+		color: @colorValue;
+	}
+
+	.bg-@{colorName} {
+		background-color: @colorValue;
+	}
+}
+
+// No variable needed
+.text-white { color: white; }
+.text-black { color: black; }
+
+.bg-white { background: white; }
+.bg-black { background: black; }
+
+// Grays
+@gr0: #545454;
+@gr1: #2A3033;
+@gr2: #9A9E9B;
+@gr3: #E2E0DF;
+@gr4: #F5F5F5;
+
+.generate-color-schema(gr1, @gr1);
+.generate-color-schema(gr2, @gr2);
+.generate-color-schema(gr3, @gr3);
+
+// Browns
+@br1: #B6A896;
+@br2: #E1D0BB;
+
+.generate-color-schema(br1, @br1);
+.generate-color-schema(br2, @br2);
+
+
+// Greys, Denim & Gold
+@screen: #C5C1C0;
+@steel: #0A1612;
+@denim: #1A2930;
+@marigold: #F7CE3E;
+
+.generate-color-schema(screen, @screen);
+.generate-color-schema(steel, @steel);
+.generate-color-schema(denim, @denim);
+.generate-color-schema(marigold, @marigold);

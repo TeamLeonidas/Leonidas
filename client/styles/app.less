@@ -1,0 +1,23 @@
+// Application Styles
+@import 'lib';
+
+html, body {
+	width: 100%;
+	height: 100%;
+	&:extend(.lato);
+	color: @gr1;
+	background-color: @gr4;
+	font-size: @basefontsize;
+	font-weight: @basefontweight;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 1px 1px 1px rgba(0,0,0, 0.004);
+}
+
+#app-container {
+	display: grid;
+	grid-template-columns: 1200px;
+	margin: 0 auto;
+	width: 1200px;
+}
+
