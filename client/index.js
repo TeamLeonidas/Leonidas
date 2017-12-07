@@ -6,7 +6,7 @@ import App from './components/App.jsx';
 import store from './store';
 
 // Styles
-import './styles/app.less'
+import './styles/app.less';
 
 render(
     <Provider store={store}>
