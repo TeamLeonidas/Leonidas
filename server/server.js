@@ -46,19 +46,10 @@ if (env === 'development') {
 app.use(passport.initialize());
 app.use(passport.session());
 
-//google oauth
-// const googleClientId = '791754955490-65ovohdld1ug2u8qojpokfuk4sasg4td.apps.googleusercontent.com';
-// const googleClientSecret = 'pWjBMyaP1esUQXTC6JUmqAGZ';
-// const oauthCallbackURL = '/oauth/google/callback';
-
-let userId;
-let userName;
-let userAvatar;
-let userStocks = [];
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
 passport.deserializeUser((id, done) => {
   userController.getUser(id, user => {
     done(null, user);
@@ -70,7 +61,6 @@ passport.use(new GoogleStrategy({
     clientSecret: GOOGLE_CLIENT_SECRET,
     callbackURL: OAUTH_CALLBACK_URL
   },
-
   (accessToken, refreshToken, profile, cb) => {
     userController.getUser(profile.id, user => {
       if (user) {
@@ -84,18 +74,19 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-app.get('/oauth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+app.get('/oauth/google', passport.authenticate('google', { scope: ['profile'] }));
 
 app.get('/oauth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // Successful authentication, redirect home.
+    // Successful authentication, set cookie & redirect home.
+    res.cookie('userid', req.user.id, { httpOnly: true });
     res.redirect('/');
   });
 
-
-
-
+app.get('/stocks/update/:stock/:userid', userController.postUserStocks, (req, res) => {
+  console.log('Stock added');
+  res.end();
+});
 
 app.listen(SERVER_PORT, () => console.log(`App listening on port ${SERVER_PORT}...`.green));
