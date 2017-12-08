@@ -74,13 +74,13 @@ passport.use(new GoogleStrategy({
   }
 ));
 
-app.get('/oauth/google',
-  passport.authenticate('google', { scope: ['profile'] }));
+app.get('/oauth/google', passport.authenticate('google', { scope: ['profile'] }));
 
 app.get('/oauth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    // Successful authentication, redirect home.
+    // Successful authentication, set cookie & redirect home.
+    res.cookie('userid', req.user.id, { httpOnly: true });
     res.redirect('/');
   });
 
