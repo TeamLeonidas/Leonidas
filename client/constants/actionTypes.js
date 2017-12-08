@@ -1,6 +1,3 @@
 // Add action type constants
-const INCREMENT_COUNTER = "INCREMENT_COUNTER";
-
-module.exports = {
-    INCREMENT_COUNTER,
-}
+export const INPUT_CHANGE = 'INPUT_CHANGE';
+export const SEARCH_STOCK = 'SEARCH_STOCK';

@@ -1,18 +1,27 @@
 import * as types from '../constants/actionTypes';
 
+let topStocks = [];
+let stockList = [];
+
 const initialState = {
-    counter: 0,
-}
+  searchSymbol: '',
+  topStocks: topStocks,
+  stockList: stockList,
+};
 
 const mainReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case types.INCREMENT_COUNTER:
-            return Object.assign({}, state, {
-                counter: state.counter + 1,
-            });
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case types.INPUT_CHANGE:
+      return Object.assign({}, state, {
+        searchSymbol: action.payload,
+      });
+
+    case types.SEARCH_STOCK:
+      console.log('response is: ', action.payload['Time Series (30min)']);
+
+    default:
+      return state;
+  }
+};
 
 export default mainReducer;
