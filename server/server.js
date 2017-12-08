@@ -1,9 +1,11 @@
 const express = require('express');
 const colors = require('colors');
 const path = require('path');
-
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require('passport')
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const env = process.env.NODE_ENV || 'development';
+
 
 const app = express();
 
@@ -39,5 +41,32 @@ if (env === 'development') {
     res.sendFile(path.join(__dirname, '../build', 'index.html'));
   });
 }
+
+//google oauth
+const googleClientId = '791754955490-65ovohdld1ug2u8qojpokfuk4sasg4td.apps.googleusercontent.com';
+const googleClientSecret = 'pWjBMyaP1esUQXTC6JUmqAGZ';
+const oauthCallbackURL = '/oauth/google/callback';
+passport.use(new GoogleStrategy({
+    clientID: googleClientId,
+    clientSecret: googleClientSecret,
+    callbackURL: oauthCallbackURL
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+app.get('/oauth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/oauth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 
 app.listen(SERVER_PORT, () => console.log(`App listening on port ${SERVER_PORT}...`.green));
