@@ -15,10 +15,9 @@ const searchStock = response => ({
 
 const onSubmit = function () {
   return function (dispatch, getState) {
+    const timeSeries = 'TIME_SERIES_DAILY';
     const { searchSymbol } = getState().main;
-    // console.log(searchSymbol);
-    // const request = new Request(`http://localhost:3000/api/articles/?q=${stateText}`);
-    return fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${searchSymbol}&interval=30min&apikey=${keys.STOCKAPI_KEY}`)
+    return fetch(`https://www.alphavantage.co/query?function=${timeSeries}&symbol=${searchSymbol}&interval=30min&apikey=${keys.STOCKAPI_KEY}`)
       .then(response => response.json())
       .then(json => dispatch(searchStock(json)))
       .catch(err => console.log(err));
@@ -28,8 +27,7 @@ const onSubmit = function () {
 const handleKeyPress = function (event) {
   return function (dispatch, getState) {
     if (event.charCode === 13) {
-      // console.log('keypressed', event);
-      console.log('value in textfield is: ', getState().main.searchSymbol);
+      // console.log('value in textfield is: ', getState().main.searchSymbol);
       dispatch(onSubmit());
     }
   };
