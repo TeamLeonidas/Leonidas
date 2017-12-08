@@ -85,7 +85,8 @@ app.get('/oauth/google/callback',
   });
 
 app.get('/stocks/update/:stock/:userid', userController.postUserStocks, (req, res) => {
-  res.send('Post successful');
+  console.log('Stock added');
+  res.end();
 });
 
 app.listen(SERVER_PORT, () => console.log(`App listening on port ${SERVER_PORT}...`.green));
