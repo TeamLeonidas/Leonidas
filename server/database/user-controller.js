@@ -3,7 +3,11 @@ const pool = require('./postgres.js');
 const controller = {
   getUser: async function(id, cb) {
     pool.connect(async (error, client, done) => {
-      const result = await client.query(`SELECT (userid, name, avatar, stocks) FROM users WHERE userid = ('${id}');`);
+      if (error) {
+        console.log('ERROR', console.log(error))
+        return;
+      };
+      const result = await client.query(`SELECT (u.userid, u.name, u.avatar, u.stocks) FROM users u WHERE u.userid = ('${id}');`);
       done();
       if (result.rows.length !== 0) {
         const arr = result.rows[0].row.split(',');
@@ -23,7 +27,7 @@ const controller = {
   postUser: async function (id, name, avatar, cb) {
     pool.connect(async (error, client, done) => {
       await client.query(`INSERT INTO users (userid, name, avatar) VALUES ('${id}', '${name}', '${avatar}');`);
-      const result = await client.query(`SELECT (userid, name, avatar, stocks) FROM users WHERE userid = ('${id}');`);
+      const result = await client.query(`SELECT (u.userid, u.name, u.avatar, u.stocks) FROM users u WHERE u.userid = ('${id}');`);
       done();
       if (result.rows.length !== 0) {
         const arr = result.rows[0].row.split(',');
