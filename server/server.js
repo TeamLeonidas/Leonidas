@@ -3,6 +3,7 @@ const colors = require('colors');
 const path = require('path');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport')
+const userController = require('./database/user-controller.js');
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const env = process.env.NODE_ENV || 'development';
 

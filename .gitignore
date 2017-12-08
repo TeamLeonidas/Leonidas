@@ -12,6 +12,5 @@ dist
 .npm
 .eslintcache
 .node_repl_history
-keys.js
 config
 *.bak
