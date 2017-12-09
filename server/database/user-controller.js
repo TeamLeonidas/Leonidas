@@ -39,6 +39,15 @@ const controller = {
       }
     });
   },
+  getUserStocks: async function(req, res, next) {
+    pool.connect(async (error, client, done) => {
+      const userId = req.params.userid;
+      const result = await client.query(`SELECT (u.stocks) FROM users u WHERE u.userid = ('${userId}');`);
+      res.json(result);
+      done();
+      next();
+    });
+  },
   postUserStocks: async function(req, res, next) {
     pool.connect(async (error, client, done) => {
       const newStock = req.params.stock;

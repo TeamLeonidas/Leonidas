@@ -4,10 +4,10 @@ import NewsTab from './../NewsTab/NewsTab.jsx';
 
 
 const StockList = (props) => {
-  const stockItems = Object.keys(props.stockList).map((symbol) => {
-    const { open, close, high, low, volume } = props.stockList[symbol];
+  const stockItems = Object.keys(props.stockList).reverse().map((symbol) => {
+    const { diff, open, close, high, low, volume } = props.stockList[symbol];
     return (
-      <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
+      <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()}  ${diff}  open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
         <div>
           <Tabs className="tab-demo z-depth-1">
             <Tab title="News" active>
