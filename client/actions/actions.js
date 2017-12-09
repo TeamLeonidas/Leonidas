@@ -73,6 +73,16 @@ const getNews = function (str) {
   }
 };
 
+const getStockData = function (str) {
+  return function (dispatch, getState) {
+    const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${str}&interval=60min&apikey=${keys.STOCKAPI_KEY}`
+    return fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+    }
+};
+
 const searchForMyStocks = function () {
   return function (dispatch, getState) {
     const { myStocks } = getState().main;
@@ -111,6 +121,7 @@ module.exports = {
   handleKeyPress,
   retrieveUserInfo,
   getNews,
+  getStockData,
   getMyStocks,
   retrieveMyStocks,
   searchForMyStocks,

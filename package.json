@@ -39,6 +39,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.1",
+    "chartist": "^0.11.0",
     "cookie-parser": "^1.4.3",
     "cross-fetch": "^1.1.1",
     "express": "^4.16.2",
@@ -49,6 +51,8 @@
     "path": "^0.12.7",
     "pg": "^7.4.0",
     "react": "^16.2.0",
+    "react-chartist": "^0.13.0",
+    "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.2.0",
     "react-materialize": "^1.1.1",
     "react-redux": "^5.0.6",
