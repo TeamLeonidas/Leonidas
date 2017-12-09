@@ -70,8 +70,8 @@ const addToDb = function () {
   return function (dispatch, getState) {
     const { searchSymbol, userId } = getState().main;
     // console.log('searchSymbol', searchSymbol, 'userId', userId);
-    return fetch(`https://localhost:3000/stocks/update/${searchSymbol}/${userId}`)
-      .then(response => response.json())
+    return fetch(`/stocks/update/${searchSymbol}/${userId}`)
+      .then(() => console.log(`${searchSymbol} added to database`))
       .catch(err => console.log(err));
   };
 };
@@ -79,8 +79,8 @@ const addToDb = function () {
 const handleKeyPress = function (event) {
   return function (dispatch, getState) {
     if (event.charCode === 13) {
-      if (getState().main.userId) dispatch(addToDb());
       dispatch(searchStock());
+      if (getState().main.userId) dispatch(addToDb());
     }
   };
 };
