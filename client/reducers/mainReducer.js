@@ -48,7 +48,7 @@ const mainReducer = (state = initialState, action) => {
         // console.log('response is: ', stockObj);
         stockList = Object.assign({}, state.stockList);
         stockList[stockSymbol] = stockInfo;
-        console.log(stockList);
+        // console.log(stockList);
         return Object.assign({}, state, {
           stockList,
           searchSymbol: '',

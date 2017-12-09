@@ -9,7 +9,7 @@ class NewsTab extends Component {
     this.state = {articles:[]}
   }
   componentWillMount() {
-    console.log(this.props)
+    // console.log(this.props)
     this.props.getNews(this.props.symbol)
     .then(json => {
       this.setState({articles:json.articles.slice(0, 3)})
