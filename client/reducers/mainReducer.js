@@ -24,6 +24,7 @@ const mainReducer = (state = initialState, action) => {
         searchSymbol: action.payload,
       });
 
+
     case types.GET_STOCKINFO:
       if (!action.payload['Error Message']) {
         const stockSymbol = action.payload['Meta Data']['2. Symbol'];

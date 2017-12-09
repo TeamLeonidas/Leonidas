@@ -14,6 +14,7 @@ const StockList = (props) => {
       </CollapsibleItem>
     );
   });
+
   const title = props.id.split('-').map(x => x[0].toUpperCase() + x.slice(1)).join(' ');
   return (
     <div>

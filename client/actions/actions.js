@@ -24,6 +24,26 @@ const searchStock = function () {
   };
 };
 
+const getNews = function (str) {
+  return function (dispatch, getState) {
+    let date = new Date()
+    date = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate() <= 9 ? '0' + date.getDate() : date.getDate())
+
+    const url = 'https://newsapi.org/v2/everything?' +
+              `sources=${keys.NEWSAPI_SOURCES}&` +
+              `q=${str}&` +
+              `from=${date}&` +
+              'sortBy=popularity&' +
+              `apiKey=${keys.NEWSAPI_KEY}`;
+
+    return fetch(url)
+      .then(function(response) {
+        console.log('inside first promise')
+        return response.json();
+      })
+    }
+};
+
 const searchStockBySym = function (symbol) {
   return function (dispatch, getState) {
     const timeSeries = 'TIME_SERIES_DAILY';
@@ -48,14 +68,18 @@ const handleKeyPress = function (event) {
   return function (dispatch, getState) {
     if (event.charCode === 13) {
       // console.log('value in textfield is: ', getState().main.searchSymbol);
+
       dispatch(searchStock());
     }
   };
 };
+
+
 
 module.exports = {
   inputChange,
   getStockInfo,
   searchStock,
   handleKeyPress,
+  getNews,
 };
