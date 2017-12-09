@@ -15,8 +15,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     inputChange: actions.inputChange,
+    getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
-    onSubmit: actions.onSubmit,
     handleKeyPress: actions.handleKeyPress,
   }, dispatch);
 };
@@ -28,17 +28,16 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div>
-        <div id="main-container" className="bg-white">
-          <SearchBar
-            searchSymbol={this.props.main.searchSymbol}
-            inputChange={this.props.inputChange}
-            searchStock={this.props.searchStock}
-            onSubmit={this.props.onSubmit}
-            handleKeyPress={this.props.handleKeyPress}
-          />
-          <StockList stockList={this.props.main.stockList} />
-        </div>
+      <div id="main-container" className="bg-white">
+        <SearchBar
+          searchSymbol={this.props.main.searchSymbol}
+          inputChange={this.props.inputChange}
+          getStockInfo={this.props.getStockInfo}
+          searchStock={this.props.searchStock}
+          handleKeyPress={this.props.handleKeyPress}
+        />
+        {/* <StockList id="top-stocks" stockList={this.props.main.stockList} /> */}
+        <StockList id="my-stocks" stockList={this.props.main.stockList} />
       </div>
     )
   }
