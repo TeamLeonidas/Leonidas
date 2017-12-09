@@ -51,7 +51,6 @@ const getNews = function (str) {
 
     return fetch(url)
       .then(function(response) {
-        console.log('inside first promise')
         return response.json();
       })
     }
