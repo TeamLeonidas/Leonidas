@@ -1,6 +1,7 @@
 import React from 'react';
 import { Collapsible, CollapsibleItem, Tabs, Tab } from 'react-materialize';
 import NewsTab from './../NewsTab/NewsTab.jsx';
+import Chart from './../Chart/Chart.jsx';
 
 
 const StockList = (props) => {
@@ -17,7 +18,10 @@ const StockList = (props) => {
               />
             </Tab>
             <Tab title="Chart" >
-              Chart Goes Here
+              <Chart
+                getStockData={props.getStockData}
+                symbol={symbol}
+              />
             </Tab>
           </Tabs>
         </div>
