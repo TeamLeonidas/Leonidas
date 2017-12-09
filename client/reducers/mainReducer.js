@@ -4,6 +4,7 @@ import * as types from '../constants/actionTypes';
 let stockList = {};
 
 const initialState = {
+  userId: '',
   searchSymbol: '',
   // myStocks: myStocks,
   stockList: stockList,
@@ -24,6 +25,11 @@ const mainReducer = (state = initialState, action) => {
         searchSymbol: action.payload,
       });
 
+    case types.GET_USERINFO:
+      // console.log(action.payload.id);
+      return Object.assign({}, state, {
+        userId: action.payload.id,
+      });
 
     case types.GET_STOCKINFO:
       if (!action.payload['Error Message']) {
