@@ -28,24 +28,32 @@ const controller = {
 
           const content = await page.property('content');
           const $ = cheerio.load(content);
-          symbol, name, last, change, percentChange, high, low, volume, avgVolume, time
+
           $('.odd').map((idx, elem) => {
             const listing = {};
-            listing.symbol = $(elem).find('td:nth-of-type(1) > div > span:nth-of-type(2) > a').text();
-            listing.symbol = $(elem).find('td:nth-of-type(2) > div > span > span > span').text();
-            listing.last =
-            listing.change =
-            listing.percentChange =
-            listing.high =
-            listing.low =
-            listing.volume =
-            listing.avgVolume =
-            listing.time =
+            listing.symbol = $(elem).attr('data-current-symbol');
+            listing.name = $(elem).find('.symbolName > div > span > span > span').text();
+            listing.last = $(elem).find('.lastPrice > div > span > span > span').text();
+            listing.change = $(elem).find('.priceChange > div > span > span > span').text();
+            listing.percentChange = $(elem).find('.percentChange > div > span > span > span').text();
+            listing.high = $(elem).find('.highPrice > div > span > span > span').text();
+            listing.low = $(elem).find('.lowPrice > div > span > span > span').text();
+            listing.volume = $(elem).find('.volume > div > span > span > span').text();
+            listing.avgVolume = $(elem).find('.averageVolume > div > span > span > span').text();
+            listing.time = $(elem).find('.tradeTime > div > span > span > span').text();
             output.push(listing);
           });
 
           await instance.exit();
         }
+
+        barChart().then(() => {
+          console.log('Scrape complete'.rainbow);
+          savedData = output;
+          console.log(savedData);
+          resolve(savedData);
+        }).catch(err => console.error(`Error: ${err.message}`));
+      })
     }
   },
   database: {
