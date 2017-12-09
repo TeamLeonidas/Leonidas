@@ -11,15 +11,15 @@ const StockList = (props) => {
       <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} | ${diff} | Open: ${open} | Close: ${close} | High: ${high} | Low: ${low} | Volume: ${volume}`} >
         <div>
           <Tabs className="tab-demo z-depth-1">
-            <Tab title="News" active>
-              <NewsTab
-                getNews={props.getNews}
+            <Tab title="Chart" active>
+              <Chart
+                getStockData={props.getStockData}
                 symbol={symbol}
               />
             </Tab>
-            <Tab title="Chart" >
-              <Chart
-                getStockData={props.getStockData}
+            <Tab title="News">
+              <NewsTab
+                getNews={props.getNews}
                 symbol={symbol}
               />
             </Tab>
