@@ -9,14 +9,15 @@ const StockList = (props) => {
   const stockItems = Object.keys(props.stockList).map((symbol) => {
     const { open, close, high, low, volume } = props.stockList[symbol];
     return (
-      <CollapsibleItem header={`${symbol.toUpperCase()} open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
+      <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
         <div>NEWS GOES HERE</div>
       </CollapsibleItem>
     );
   });
+  const title = props.id.split('-').map(x => x[0].toUpperCase() + x.slice(1)).join(' ');
   return (
     <div>
-      <h3>My Stocks</h3>
+      <h3>{title}</h3>
       <Collapsible accordion>
         {stockItems}
       </Collapsible>

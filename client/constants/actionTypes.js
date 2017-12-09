@@ -1,3 +1,3 @@
 // Add action type constants
 export const INPUT_CHANGE = 'INPUT_CHANGE';
-export const SEARCH_STOCK = 'SEARCH_STOCK';
+export const GET_STOCKINFO = 'GET_STOCKINFO';

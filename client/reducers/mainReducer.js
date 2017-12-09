@@ -24,7 +24,7 @@ const mainReducer = (state = initialState, action) => {
         searchSymbol: action.payload,
       });
 
-    case types.SEARCH_STOCK:
+    case types.GET_STOCKINFO:
       if (!action.payload['Error Message']) {
         const stockSymbol = action.payload['Meta Data']['2. Symbol'];
         const stockObj = action.payload['Time Series (Daily)'][todaysDate];

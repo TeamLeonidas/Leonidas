@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 // Components
-import Nav from './../components/Nav/Nav.jsx';
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import StockList from './../components/StockList/StockList.jsx';
 
@@ -30,8 +29,6 @@ class MainContainer extends Component {
   render() {
     return (
       <div id="main-container" className="bg-white">
-        MAIN CONTAINER
-        <Nav />
         <SearchBar
           searchSymbol={this.props.main.searchSymbol}
           inputChange={this.props.inputChange}
