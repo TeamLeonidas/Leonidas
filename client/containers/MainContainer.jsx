@@ -22,6 +22,8 @@ const mapDispatchToProps = (dispatch) => {
     searchStock: actions.searchStock,
     retrieveUserInfo: actions.retrieveUserInfo,
     getTopStocks: actions.getTopStocks,
+    retrieveMyStocks: actions.retrieveMyStocks,
+    searchForMyStocks: actions.searchForMyStocks,
   }, dispatch);
 };
 
@@ -35,8 +37,14 @@ class MainContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.retrieveUserInfo();
+    this.props.retrieveUserInfo()
+    .then(() => this.props.retrieveMyStocks())
+    .then(() => this.props.searchForMyStocks());
   }
+
+  // componentDidUpdate() {
+  //   this.props.retrieveMyStocks();
+  // }
 
   render() {
     return (

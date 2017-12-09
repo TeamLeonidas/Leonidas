@@ -85,6 +85,11 @@ app.get('/stocks/update/:stock/:userid', userController.postUserStocks, (req, re
   res.end();
 });
 
+app.get('/stocks/get/:userid', userController.getUserStocks, (req, res) => {
+  console.log('Got user data');
+  res.end();
+});
+
 app.get('/auth', (req, res) => {
   if (req.user) {
     res.json(req.user);
