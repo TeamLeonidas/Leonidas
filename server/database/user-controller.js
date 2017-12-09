@@ -43,8 +43,6 @@ const controller = {
     pool.connect(async (error, client, done) => {
       const newStock = req.params.stock;
       const userId = req.params.userid;
-      // update tabl1 set arr_str = (select array_agg(distinct e) from unnest(arr_str || '{b,c,d}') e) where  not arr_str @> '{b,c,d}'
-      // await client.query(`UPDATE users SET stocks = stocks || '{${newStock}}' WHERE userid = ('${userId}') AND not stocks @> '{${newStock}}';`)
       await client.query(`UPDATE users SET stocks = (SELECT array_agg(distinct e) FROM unnest(stocks || '{${newStock}}') e) WHERE userid = ('${userId}') AND not stocks @> '{${newStock}}';`)
       done();
       next();
