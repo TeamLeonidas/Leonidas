@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
     getTopStocks: actions.getTopStocks,
     retrieveMyStocks: actions.retrieveMyStocks,
     searchForMyStocks: actions.searchForMyStocks,
+    getStockData: actions.getStockData,
   }, dispatch);
 };
 
@@ -64,6 +65,7 @@ class MainContainer extends Component {
           id="my-stocks"
           stockList={this.props.main.stockList}
           getNews={this.props.getNews}
+          getStockData={this.props.getStockData}
         />
       </div>
     );
