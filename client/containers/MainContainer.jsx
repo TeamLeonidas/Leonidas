@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
     handleKeyPress: actions.handleKeyPress,
+    retrieveUserInfo: actions.retrieveUserInfo,
   }, dispatch);
 };
 
@@ -26,6 +27,9 @@ class MainContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.retrieveUserInfo();
+  }
   render() {
     return (
       <div id="main-container" className="bg-white">
