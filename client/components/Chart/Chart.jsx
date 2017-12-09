@@ -19,7 +19,9 @@ class Chart extends Component {
   }
 
   render() {
-    const stockClose = Object.values(this.state.stockData).map(obj => obj['4. close']).reverse()
+    const stockClose = Object.values(this.state.stockData).map(obj => {
+      if (obj) return obj['4. close'];
+    }).reverse()
     const symbol = this.state.stockInfo['2. Symbol']
 
     const data = {
@@ -44,7 +46,7 @@ class Chart extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: stockClose
+          data: this.state.stockData && stockClose
         }
       ]
     };
@@ -52,7 +54,7 @@ class Chart extends Component {
     return (
       <div className='chart'>
         <br />
-        <h3>{symbol ? symbol.toUpperCase() : symbol}</h3>
+        <h3>{this.state.stockData && symbol ? symbol.toUpperCase() : symbol}</h3>
         <Line data={data} />
       </div>
     )

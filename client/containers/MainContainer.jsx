@@ -49,7 +49,7 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div id="main-container" className="bg-white">
+      <div id="main-container" className="bg-white padding-xl box-shadow-light">
         <SearchBar
           searchSymbol={this.props.main.searchSymbol}
           inputChange={this.props.inputChange}
