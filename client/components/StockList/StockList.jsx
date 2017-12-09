@@ -7,7 +7,7 @@ const StockList = (props) => {
   const stockItems = Object.keys(props.stockList).reverse().map((symbol) => {
     const { diff, open, close, high, low, volume } = props.stockList[symbol];
     return (
-      <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()}  ${diff}  open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
+      <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} | ${diff} | Open: ${open} | Close: ${close} | High: ${high} | Low: ${low} | Volume: ${volume}`} >
         <div>
           <Tabs className="tab-demo z-depth-1">
             <Tab title="News" active>
@@ -28,7 +28,7 @@ const StockList = (props) => {
   const title = props.id.split('-').map(x => x[0].toUpperCase() + x.slice(1)).join(' ');
   return (
     <div>
-      <h3>{title}</h3>
+      <div className="h3">{title}</div>
       <Collapsible accordion>
         {stockItems}
       </Collapsible>
