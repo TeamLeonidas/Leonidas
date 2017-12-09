@@ -44,6 +44,9 @@ const mainReducer = (state = initialState, action) => {
           searchSymbol: '',
         });
       }
+      return Object.assign({}, state, {
+        searchSymbol: '',
+      });
 
     default:
       return state;
