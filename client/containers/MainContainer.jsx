@@ -5,7 +5,9 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 // Components
+import Nav from './../components/Nav/Nav.jsx';
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
+import NewsTab from './../components/NewsTab.jsx';
 import StockList from './../components/StockList/StockList.jsx';
 
 const mapStateToProps = state => ({
@@ -15,6 +17,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     inputChange: actions.inputChange,
+    handleKeyPress: actions.handleKeyPress,
+    getNews: actions.getNews,
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
     handleKeyPress: actions.handleKeyPress,
