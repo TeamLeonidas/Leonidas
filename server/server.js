@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 // Controllers
 const userController = require('./database/user-controller.js');
 const scraperController = require('./database/scraper-controller.js');
+const scraperDBController = require('./database/scraper-db-controller.js');
 
 // Application variables
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
@@ -18,6 +19,11 @@ const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, OAUTH_CALLBACK_URL } = require('
 const { COOKIE_KEY } = require('../config/keys.js');
 
 const app = express();
+
+scraperController.getData().then((data) => {
+  scraperDBController.clearStocks();
+  scraperDBController.postStocks(data);
+}).catch(err => console.log(`Error: ${err.message}`.red));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -75,7 +81,6 @@ app.get('/stocks/update/:stock/:userid', userController.postUserStocks, (req, re
 
 app.get('/auth', (req, res) => {
   if (req.user) {
-    console.log('SCRAPER:  ', scraperController.scraper.getData());
     res.json(req.user);
   } else {
     res.json({});
