@@ -45,14 +45,14 @@ const mainReducer = (state = initialState, action) => {
       if (!action.payload['Error Message']) {
         const stockSymbol = action.payload['Meta Data']['2. Symbol'];
         const stockObj = action.payload['Time Series (Daily)'][todaysDate];
-        const diff = (stockObj['4. close'] - stockObj['1. open']).toFixed(2);
+        // console.log('open', typeof stockObj['1. open']);
         const stockInfo = {
-          diff: diff,
-          open: stockObj['1. open'],
-          close: stockObj['4. close'],
-          high: stockObj['2. high'],
-          low: stockObj['3. low'],
-          volume: stockObj['5. volume'],
+          diff: (stockObj['4. close'] - stockObj['1. open']).toFixed(2),
+          open: Number(stockObj['1. open']).toFixed(2),
+          close: Number(stockObj['4. close']).toFixed(2),
+          high: Number(stockObj['2. high']).toFixed(2),
+          low: Number(stockObj['3. low']).toFixed(2),
+          volume: Number(stockObj['5. volume']).toFixed(0),
         };
         // console.log('response is: ', stockObj);
         stockList = Object.assign({}, state.stockList);
