@@ -38,8 +38,11 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "cross-fetch": "^1.1.1",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "nodemon": "^1.12.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
