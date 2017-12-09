@@ -17,6 +17,23 @@ const getUserInfo = response => ({
   payload: response,
 });
 
+const getMyStocks = response => ({
+  type: types.GET_MYSTOCKS,
+  payload: response,
+});
+
+const retrieveMyStocks = function () {
+  return function (dispatch, getState) {
+    const { userId } = getState().main;
+    if (userId) {
+      return fetch(`/stocks/get/${userId}`)
+        .then(response => response.json())
+        .then(stocks => dispatch(getMyStocks(stocks)))
+        .catch(err => console.log(err));
+    }
+  };
+};
+
 const retrieveUserInfo = function () {
   return function (dispatch, getState) {
     return fetch('/auth', { credentials: 'include' })
@@ -43,17 +60,17 @@ const getNews = function (str) {
     date = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate() <= 9 ? '0' + date.getDate() : date.getDate())
 
     const url = 'https://newsapi.org/v2/everything?' +
-              `sources=${keys.NEWSAPI_SOURCES}&` +
-              `q=${str}&` +
-              `from=${date}&` +
-              'sortBy=popularity&' +
-              `apiKey=${keys.NEWSAPI_KEY}`;
+      `sources=${keys.NEWSAPI_SOURCES}&` +
+      `q=${str}&` +
+      `from=${date}&` +
+      'sortBy=popularity&' +
+      `apiKey=${keys.NEWSAPI_KEY}`;
 
     return fetch(url)
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-    }
+  }
 };
 
 const getStockData = function (str) {
@@ -66,20 +83,22 @@ const getStockData = function (str) {
     }
 };
 
-const searchStockBySym = function (symbol) {
+const searchForMyStocks = function () {
   return function (dispatch, getState) {
+    const { myStocks } = getState().main;
     const timeSeries = 'TIME_SERIES_DAILY';
-    return fetch(`https://www.alphavantage.co/query?function=${timeSeries}&symbol=${symbol}&apikey=${keys.STOCKAPI_KEY}`)
-      .then(response => response.json())
-      .then(json => dispatch(getStockInfo(json)))
-      .catch(err => console.log(err));
+    myStocks.forEach((symbol) => {
+      return fetch(`https://www.alphavantage.co/query?function=${timeSeries}&symbol=${symbol}&apikey=${keys.STOCKAPI_KEY}`)
+        .then(response => response.json())
+        .then(json => dispatch(getStockInfo(json)))
+        .catch(err => console.log(err));
+    });
   };
 };
 
 const addToDb = function () {
   return function (dispatch, getState) {
     const { searchSymbol, userId } = getState().main;
-    // console.log('searchSymbol', searchSymbol, 'userId', userId);
     return fetch(`/stocks/update/${searchSymbol}/${userId}`)
       .then(() => console.log(`${searchSymbol} added to database`))
       .catch(err => console.log(err));
@@ -95,8 +114,6 @@ const handleKeyPress = function (event) {
   };
 };
 
-
-
 module.exports = {
   inputChange,
   getStockInfo,
@@ -105,4 +122,7 @@ module.exports = {
   retrieveUserInfo,
   getNews,
   getStockData,
+  getMyStocks,
+  retrieveMyStocks,
+  searchForMyStocks,
 };
