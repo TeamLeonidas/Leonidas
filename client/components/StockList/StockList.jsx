@@ -6,6 +6,7 @@ import Chart from './../Chart/Chart.jsx';
 
 const StockList = (props) => {
   const stockItems = Object.keys(props.stockList).reverse().map((symbol) => {
+    console.log(symbol)
     const { diff, open, close, high, low, volume } = props.stockList[symbol];
     return (
       <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} | ${diff} | Open: ${open} | Close: ${close} | High: ${high} | Low: ${low} | Volume: ${volume}`} >

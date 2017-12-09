@@ -23,12 +23,6 @@ class TopStocks extends Component {
                   symbol={stock.symbol}
                 />
               </Tab>
-              <Tab title="Chart">
-                <Chart
-                  getStockData={this.props.getStockData}
-                  symbol={stock.symbol}
-                />
-              </Tab>
             </Tabs>
           </div>
         </CollapsibleItem>

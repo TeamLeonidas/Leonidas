@@ -43,6 +43,8 @@ const mainReducer = (state = initialState, action) => {
 
     case types.GET_STOCKINFO:
       if (!action.payload['Error Message']) {
+        console.log('ACTION PAYLOAD!!!!!!!')
+        console.log(action.payload)
         const stockSymbol = action.payload['Meta Data']['2. Symbol'];
         const stockObj = action.payload['Time Series (Daily)'][todaysDate];
         // console.log('open', typeof stockObj['1. open']);
