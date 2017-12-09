@@ -60,6 +60,7 @@ class MainContainer extends Component {
         <TopStocks 
           stockList={this.props.main.topStocks} 
           getNews={this.props.getNews}
+          getStockData={this.props.getStockData}
         />
         <StockList
           id="my-stocks"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Collapsible, CollapsibleItem, Tabs, Tab, Dropdown, Button, NavItem } from 'react-materialize';
 import NewsTab from './../NewsTab/NewsTab.jsx';
+import Chart from './../Chart/Chart.jsx';
 
 class TopStocks extends Component {
   constructor(props) {
@@ -22,9 +23,12 @@ class TopStocks extends Component {
                   symbol={stock.symbol}
                 />
               </Tab>
-              <Tab title="Chart" >
-                Chart Goes Here
-            </Tab>
+              <Tab title="Chart">
+                <Chart
+                  getStockData={this.props.getStockData}
+                  symbol={stock.symbol}
+                />
+              </Tab>
             </Tabs>
           </div>
         </CollapsibleItem>
