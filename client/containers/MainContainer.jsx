@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 // Components
+import Nav from './../components/Nav/Nav.jsx';
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import StockList from './../components/StockList/StockList.jsx';
 
@@ -15,9 +16,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     inputChange: actions.inputChange,
+    handleKeyPress: actions.handleKeyPress,
+    getNews: actions.getNews,
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
     handleKeyPress: actions.handleKeyPress,
+    retrieveUserInfo: actions.retrieveUserInfo,
   }, dispatch);
 };
 
@@ -26,6 +30,9 @@ class MainContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.retrieveUserInfo();
+  }
   render() {
     return (
       <div id="main-container" className="bg-white">
@@ -37,7 +44,11 @@ class MainContainer extends Component {
           handleKeyPress={this.props.handleKeyPress}
         />
         {/* <StockList id="top-stocks" stockList={this.props.main.stockList} /> */}
-        <StockList id="my-stocks" stockList={this.props.main.stockList} />
+        <StockList
+          id="my-stocks"
+          stockList={this.props.main.stockList}
+          getNews={this.props.getNews}
+        />
       </div>
     )
   }
