@@ -46,15 +46,6 @@ if (env === 'development') {
 app.use(passport.initialize());
 app.use(passport.session());
 
-//google oauth
-// const googleClientId = '791754955490-65ovohdld1ug2u8qojpokfuk4sasg4td.apps.googleusercontent.com';
-// const googleClientSecret = 'pWjBMyaP1esUQXTC6JUmqAGZ';
-// const oauthCallbackURL = '/oauth/google/callback';
-
-let userId;
-let userName;
-let userAvatar;
-let userStocks = [];
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

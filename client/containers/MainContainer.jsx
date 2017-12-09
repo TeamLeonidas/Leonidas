@@ -7,6 +7,8 @@ import * as actions from '../actions/actions';
 // Components
 import Nav from './../components/Nav/Nav.jsx';
 import Searchbar from './../components/SearchBar/SearchBar.jsx';
+import NewsTab from './../components/NewsTab.jsx';
+
 
 const mapStateToProps = state => ({
   main: state.main,
@@ -18,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
       searchStock: actions.searchStock,
       onSubmit: actions.onSubmit,
       handleKeyPress: actions.handleKeyPress,
+      getNews: actions.getNews,
   }, dispatch);
 };
 
