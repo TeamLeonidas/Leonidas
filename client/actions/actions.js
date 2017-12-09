@@ -24,7 +24,7 @@ const onSubmit = function () {
   };
 };
 
-const handleExpand = function (str) {
+const getNews = function (str) {
   return function (dispatch, getState) {
     let date = new Date()
     date = date.getFullYear() + '-' + date.getMonth() + '-' + (date.getDate() <= 9 ? '0' + date.getDate() : date.getDate())
@@ -62,5 +62,5 @@ module.exports = {
   searchStock,
   onSubmit,
   handleKeyPress,
-  handleExpand,
+  getNews,
 };

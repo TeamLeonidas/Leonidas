@@ -6,7 +6,7 @@ import * as actions from '../actions/actions';
 
 // Components
 import Nav from './../components/Nav/Nav.jsx';
-import Searchbar from './../components/SearchBar/SearchBar.jsx';
+import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import NewsTab from './../components/NewsTab.jsx';
 import StockList from './../components/StockList/StockList.jsx';
 
