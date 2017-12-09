@@ -1,14 +1,13 @@
 import React from 'react';
 
 const NewsBox = (props) => {
-  // console.log(props)
   return (
     <div className="news-box">
-      <a href={props.url}>
+      <a target="_blank" href={props.url}>
         <h4><b>{props.title}</b></h4>
       </a>
       <p>by: {props.author}</p>
-      <a href={props.url}>
+      <a target="_blank" href={props.url}>
         <img className='news-img' src={props.urlToImage} />
       </a>
       <p>Source: {props.source}</p>
