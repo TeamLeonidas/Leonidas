@@ -7,6 +7,7 @@ import * as actions from '../actions/actions';
 // Components
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import StockList from './../components/StockList/StockList.jsx';
+import TopStocks from './../components/TopStocks/TopStocks.jsx';
 
 const mapStateToProps = state => ({
   main: state.main,
@@ -47,8 +48,7 @@ class MainContainer extends Component {
           searchStock={this.props.searchStock}
           handleKeyPress={this.props.handleKeyPress}
         />
-        <StockList 
-          id="top-stocks" 
+        <TopStocks 
           stockList={this.props.main.topStocks} 
           getNews={this.props.getNews}
         />
