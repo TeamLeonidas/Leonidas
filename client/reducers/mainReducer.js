@@ -7,6 +7,7 @@ const initialState = {
   userId: '',
   searchSymbol: '',
   // myStocks: myStocks,
+  topStocks: {},
   stockList: stockList,
 };
 
@@ -56,6 +57,11 @@ const mainReducer = (state = initialState, action) => {
       }
       return Object.assign({}, state, {
         searchSymbol: '',
+      });
+
+    case types.GET_TOPSTOCKS:
+      return Object.assign({}, state, {
+        topStocks: action.payload
       });
 
     default:

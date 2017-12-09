@@ -7,12 +7,17 @@ let lastRequest;
 let savedData = [];
 
 const controller = {
-  getStocks: async function (symbol) {
+  getStocks: async function (cb) {
     pool.connect(async (error, client, done) => {
       if (error) return console.log(`getStocks ${error.message}`.red);
-      console.log('Retrieving scraped data...'.yellow);
-      const result = await client.query(`SELECT (s.symbol, s.name, s.last, s.change, s.percentChange, s.high, s.low, s.volume, s.avgVolume, s.time) FROM scraper s WHERE s.symbol = ('${symbol}');`);
-      console.log('Done getting stocks...'.green);
+      console.log('Retrieving stocks...'.yellow);
+      const result = await client.query('SELECT * FROM scraper;');
+      if (result.rows.length !== 0) {
+        cb(result.rows);
+      } else {
+        cb(void 0);
+      }
+      console.log('Done retrieving stocks...'.green);
       done();
     });
   },
@@ -30,9 +35,8 @@ const controller = {
   clearStocks: async function (req, res) {
     pool.connect(async (error, client, done) => {
       if (error) return console.log(`clearStocks ${error.message}`.red);
-      console.log('Clearing scraper table...'.red);
+      console.log('Scraper table cleared...'.red);
       await client.query('DELETE FROM scraper');
-      console.log('Done deleting stocks...'.green);
       done();
     });
   }

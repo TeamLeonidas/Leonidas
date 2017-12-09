@@ -102,6 +102,12 @@ app.get('/logout', (req, res) => {
   }
 });
 
+app.get('/topstocks', (req, res) => {
+  scraperDBController.getStocks(stocks => {
+    res.json(stocks);
+  });
+});
+
 if (env === 'development') {
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');

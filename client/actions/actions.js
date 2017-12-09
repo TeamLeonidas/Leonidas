@@ -12,6 +12,11 @@ const getStockInfo = response => ({
   payload: response,
 });
 
+const getTopStockData = response => ({
+  type: types.GET_TOPSTOCKS,
+  payload: response,
+});
+
 const getUserInfo = response => ({
   type: types.GET_USERINFO,
   payload: response,
@@ -85,6 +90,14 @@ const handleKeyPress = function (event) {
   };
 };
 
+const getTopStocks = function () {
+  return function (dispatch) {
+    return fetch('/topstocks')
+      .then(response => response.json())
+      .then(json => dispatch(getTopStockData(json)))
+      .catch(err => console.log(err));
+  };
+};
 
 
 module.exports = {
@@ -94,4 +107,5 @@ module.exports = {
   handleKeyPress,
   retrieveUserInfo,
   getNews,
+  getTopStocks,
 };

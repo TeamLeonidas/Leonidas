@@ -20,12 +20,17 @@ const mapDispatchToProps = (dispatch) => {
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
     retrieveUserInfo: actions.retrieveUserInfo,
+    getTopStocks: actions.getTopStocks,
   }, dispatch);
 };
 
 class MainContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.props.getTopStocks();
   }
 
   componentDidMount() {
@@ -42,7 +47,11 @@ class MainContainer extends Component {
           searchStock={this.props.searchStock}
           handleKeyPress={this.props.handleKeyPress}
         />
-        {/* <StockList id="top-stocks" stockList={this.props.main.stockList} /> */}
+        <StockList 
+          id="top-stocks" 
+          stockList={this.props.main.topStocks} 
+          getNews={this.props.getNews}
+        />
         <StockList
           id="my-stocks"
           stockList={this.props.main.stockList}
