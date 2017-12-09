@@ -1,12 +1,12 @@
 import * as types from '../constants/actionTypes';
 
-// let myStocks = [];
+let myStocks = [];
 let stockList = {};
 
 const initialState = {
   userId: '',
   searchSymbol: '',
-  // myStocks: myStocks,
+  myStocks: myStocks,
   stockList: stockList,
 };
 
@@ -28,8 +28,13 @@ const mainReducer = (state = initialState, action) => {
         searchSymbol: action.payload,
       });
 
+    case types.GET_MYSTOCKS:
+      myStocks = [...action.payload.rows[0].stocks];
+      return Object.assign({}, state, {
+        myStocks: myStocks,
+      });
+
     case types.GET_USERINFO:
-      console.log(action.payload.id);
       return Object.assign({}, state, {
         userId: action.payload.id,
       });
@@ -38,7 +43,9 @@ const mainReducer = (state = initialState, action) => {
       if (!action.payload['Error Message']) {
         const stockSymbol = action.payload['Meta Data']['2. Symbol'];
         const stockObj = action.payload['Time Series (Daily)'][todaysDate];
+        const diff = (stockObj['4. close'] - stockObj['1. open']).toFixed(2);
         const stockInfo = {
+          diff: diff,
           open: stockObj['1. open'],
           close: stockObj['4. close'],
           high: stockObj['2. high'],
