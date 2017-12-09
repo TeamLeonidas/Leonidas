@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     retrieveUserInfo: actions.retrieveUserInfo,
     retrieveMyStocks: actions.retrieveMyStocks,
     searchForMyStocks: actions.searchForMyStocks,
+    getStockData: actions.getStockData,
   }, dispatch);
 };
 
