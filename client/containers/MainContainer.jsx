@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 // Components
-import Nav from './../components/Nav/Nav.jsx';
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import StockList from './../components/StockList/StockList.jsx';
 
@@ -20,7 +19,6 @@ const mapDispatchToProps = (dispatch) => {
     getNews: actions.getNews,
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
-    handleKeyPress: actions.handleKeyPress,
     retrieveUserInfo: actions.retrieveUserInfo,
   }, dispatch);
 };
@@ -33,6 +31,7 @@ class MainContainer extends Component {
   componentDidMount() {
     this.props.retrieveUserInfo();
   }
+
   render() {
     return (
       <div id="main-container" className="bg-white">
@@ -50,7 +49,7 @@ class MainContainer extends Component {
           getNews={this.props.getNews}
         />
       </div>
-    )
+    );
   }
 }
 

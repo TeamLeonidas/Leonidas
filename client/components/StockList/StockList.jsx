@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapsible, CollapsibleItem } from 'react-materialize';
+import { Collapsible, CollapsibleItem, Tabs, Tab } from 'react-materialize';
 import NewsTab from './../NewsTab/NewsTab.jsx';
 
 
@@ -9,10 +9,17 @@ const StockList = (props) => {
     return (
       <CollapsibleItem key={`my-${symbol}`} header={`${symbol.toUpperCase()} open: ${open} close: ${close} high: ${high} low: ${low} volume: ${volume}`} >
         <div>
-          <NewsTab
-            getNews={props.getNews}
-            symbol={symbol}
-          />
+          <Tabs className="tab-demo z-depth-1">
+            <Tab title="News" active>
+              <NewsTab
+                getNews={props.getNews}
+                symbol={symbol}
+              />
+            </Tab>
+            <Tab title="Chart" >
+              Chart Goes Here
+            </Tab>
+          </Tabs>
         </div>
       </CollapsibleItem>
     );
