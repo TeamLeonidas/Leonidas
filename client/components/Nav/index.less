@@ -1,11 +1,40 @@
-// #nav-container{
-//     height: 55px;
-//     border-bottom: 1px solid @gr3;
+#nav-bar{
+    height: 55px;
+    border-bottom: 1px solid @gr3;
 
-//     .nav-inner {
-//         display: grid;
-//         grid-template-columns: 1200px;
-//         width: 1200px;
-//         margin: 0 auto;
-//     }
-// }
+    .nav-inner {
+        display: grid;
+        grid-template-columns: 200px 800px 200px;
+        align-items: center;
+        width: 1200px;
+        height: inherit;
+        margin: 0 auto;
+
+        .logo {
+          display: grid;
+          grid-template-columns: 35px 155px;
+          grid-gap: 10px;
+
+          img {
+            margin-top: 8px;
+            width: 35px;
+          }
+
+          .logo-text {
+            font-variant: small-caps;
+            line-height: 55px;
+          }
+        }
+
+        .log-in {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            height: 35px;
+            padding: 0 25px;
+          }
+        }
+    }
+}

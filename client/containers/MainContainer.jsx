@@ -8,7 +8,7 @@ import * as actions from '../actions/actions';
 import Nav from './../components/Nav/Nav.jsx';
 import Searchbar from './../components/SearchBar/SearchBar.jsx';
 import NewsTab from './../components/NewsTab.jsx';
-
+import StockList from './../components/StockList/StockList.jsx';
 
 const mapStateToProps = state => ({
   main: state.main,
@@ -16,11 +16,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-      inputChange: actions.inputChange,
-      searchStock: actions.searchStock,
-      onSubmit: actions.onSubmit,
-      handleKeyPress: actions.handleKeyPress,
-      getNews: actions.getNews,
+    inputChange: actions.inputChange,
+    searchStock: actions.searchStock,
+    onSubmit: actions.onSubmit,
+    handleKeyPress: actions.handleKeyPress,
+    getNews: actions.getNews,
   }, dispatch);
 };
 
@@ -31,16 +31,17 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div id="main-container" className="bg-white">
-        MAIN CONTAINER
-        <Nav />
-        <Searchbar
-          searchSymbol={this.props.main.searchSymbol}
-          inputChange={this.props.inputChange}
-          searchStock={this.props.searchStock}
-          onSubmit={this.props.onSubmit}
-          handleKeyPress={this.props.handleKeyPress}
-        />
+      <div>
+        <div id="main-container" className="bg-white">
+          <SearchBar
+            searchSymbol={this.props.main.searchSymbol}
+            inputChange={this.props.inputChange}
+            searchStock={this.props.searchStock}
+            onSubmit={this.props.onSubmit}
+            handleKeyPress={this.props.handleKeyPress}
+          />
+          <StockList stockList={this.props.main.stockList} />
+        </div>
       </div>
     )
   }
