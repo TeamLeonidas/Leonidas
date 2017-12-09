@@ -7,6 +7,7 @@ import * as actions from '../actions/actions';
 // Components
 import SearchBar from './../components/SearchBar/SearchBar.jsx';
 import StockList from './../components/StockList/StockList.jsx';
+import TopStocks from './../components/TopStocks/TopStocks.jsx';
 
 const mapStateToProps = state => ({
   main: state.main,
@@ -20,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     getStockInfo: actions.getStockInfo,
     searchStock: actions.searchStock,
     retrieveUserInfo: actions.retrieveUserInfo,
+    getTopStocks: actions.getTopStocks,
     retrieveMyStocks: actions.retrieveMyStocks,
     searchForMyStocks: actions.searchForMyStocks,
     getStockData: actions.getStockData,
@@ -29,6 +31,10 @@ const mapDispatchToProps = (dispatch) => {
 class MainContainer extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    this.props.getTopStocks();
   }
 
   componentDidMount() {
@@ -51,7 +57,11 @@ class MainContainer extends Component {
           searchStock={this.props.searchStock}
           handleKeyPress={this.props.handleKeyPress}
         />
-        {/* <StockList id="top-stocks" stockList={this.props.main.stockList} /> */}
+        <TopStocks 
+          stockList={this.props.main.topStocks} 
+          getNews={this.props.getNews}
+          getStockData={this.props.getStockData}
+        />
         <StockList
           id="my-stocks"
           stockList={this.props.main.stockList}

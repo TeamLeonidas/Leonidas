@@ -7,13 +7,23 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+// Controllers
 const userController = require('./database/user-controller.js');
+const scraperController = require('./database/scraper-controller.js');
+const scraperDBController = require('./database/scraper-db-controller.js');
+
+// Application variables
 const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const env = process.env.NODE_ENV || 'development';
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, OAUTH_CALLBACK_URL } = require('../config/oauth.js');
 const { COOKIE_KEY } = require('../config/keys.js');
 
 const app = express();
+
+scraperController.getData().then((data) => {
+  scraperDBController.clearStocks();
+  scraperDBController.postStocks(data);
+}).catch(err => console.log(`Error: ${err.message}`.red));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -95,6 +105,12 @@ app.get('/logout', (req, res) => {
   } else {
     res.redirect('/');
   }
+});
+
+app.get('/topstocks', (req, res) => {
+  scraperDBController.getStocks(stocks => {
+    res.json(stocks);
+  });
 });
 
 if (env === 'development') {
