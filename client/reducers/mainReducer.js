@@ -11,9 +11,12 @@ const initialState = {
 };
 
 const today = new Date();
+const day = today.getDay();
 let dd = today.getDate();
 let mm = today.getMonth() + 1;
 const yyyy = today.getFullYear();
+if (day === 6) dd -= 1;
+if (day === 0) dd -= 2;
 if (dd < 10) dd = `0${dd}`;
 if (mm < 10) mm = `0${mm}`;
 const todaysDate = `${yyyy}-${mm}-${dd}`;
@@ -26,7 +29,7 @@ const mainReducer = (state = initialState, action) => {
       });
 
     case types.GET_USERINFO:
-      // console.log(action.payload.id);
+      console.log(action.payload.id);
       return Object.assign({}, state, {
         userId: action.payload.id,
       });
